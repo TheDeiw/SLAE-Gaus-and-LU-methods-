@@ -1,0 +1,119 @@
+/* *{padding: 0;
+margin: 0;
+} */
+
+body {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+form {
+    margin: auto;
+    text-align: center;
+}
+
+.equation {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+input[type="text"] {
+    width: 50px;
+    height: 30px;
+    margin: 0 10px;
+    text-align: center;
+    border: none;
+    font-size: 17px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.buttons{
+    margin: auto;
+    width: 50%;
+    display: flex;
+}
+
+.submit-button {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2a9837;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 1s;
+}
+
+.default-button {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2a5298;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 1s;
+}
+
+.fillzero-button {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2a5298;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 1s;
+}
+
+.submit-button:hover{
+    background-color: #aaf6c7;
+    transition: 1s;
+}
+
+.fillzero-button:hover{
+    background-color: #7192d8;
+    transition: 1s;
+}
+
+.default-button:hover{
+    background-color: #7192d8;
+    transition: 1s;
+}
+
+.resultsContainer{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+}
+
+.gaus{
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    /*border: solid;*/
+}
+
+.lu{
+    width: 50%;
+    text-align: center;
+}

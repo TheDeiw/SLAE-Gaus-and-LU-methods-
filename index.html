@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Enter your matrix</h1>
+    <form>
+        <div class="equation">
+            <input type="text" name="x11" value="0">* x<sub>1</sub> +
+            <input type="text" name="x12" value="0">* x<sub>2</sub> +
+            <input type="text" name="x13" value="0">* x<sub>3</sub> =
+            <input type="text" name="result1" value="0">
+        </div>
+        <div class="equation">
+            <input type="text" name="x21" value="0">* x<sub>1</sub> +
+            <input type="text" name="x22" value="0">* x<sub>2</sub> +
+            <input type="text" name="x23" value="0">* x<sub>3</sub> =
+            <input type="text" name="result2" value="0">
+        </div>
+        <div class="equation">
+            <input type="text" name="x31" value="0">* x<sub>1</sub> +
+            <input type="text" name="x32" value="0">* x<sub>2</sub> +
+            <input type="text" name="x33" value="0">* x<sub>3</sub> =
+            <input type="text" name="result3" value="0">
+        </div>
+    </form>
+    <div class="buttons">
+        <button class="default-button">Default</button>
+        <button class="fillzero-button">Fill with 0</button>
+        <button class="submit-button">Submit</button>
+    </div>
+   
+
+    <div class="resultsContainer">
+        <div class="gaus">
+            <h2>Gaus method</h2>
+        </div>
+        <div class="lu">
+            <h2>LU method</h2>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
