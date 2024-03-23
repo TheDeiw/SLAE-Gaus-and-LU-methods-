@@ -58,6 +58,7 @@ submitButton.addEventListener("click", function(e){
 });*/
 
 let Results = [];
+var failtxt = document.querySelector('.fail');
 /* -------------------- BUTTONS -------------------- */
 document.querySelector('.submit-button').addEventListener('click', MainFunction);
 
@@ -91,6 +92,7 @@ document.querySelector('.default-button').addEventListener('click', function() {
 
 function MainFunction(){
     СlearContent();
+    failtxt.style.display = 'none';
     // Taking information
     var matrix = [];
     var equations = document.querySelectorAll('.equation');
@@ -104,26 +106,35 @@ function MainFunction(){
     }
     console.log(matrix);
 
-    //addElement();
-    console.log("---------- Your matrix -----------");
-    PrintingMatrix(matrix, 3, 4);
+    if(Determinant(matrix)==0){
+        failtxt.style.display = 'block';
+    }
+    else{
+        //addElement();
+        console.log("---------- Your matrix -----------");
+        PrintingMatrix(matrix, 3, 4);
 
-    console.log("----------- Gaus method -----------");
-    console.log();
+        console.log("----------- Gaus method -----------");
+        console.log();
     
-    GausMethod(matrix);
-    console.log(`x1 = ${Results[0].toFixed(3)}`);
-    console.log(`x2 = ${Results[1].toFixed(3)}`);
-    console.log(`x3 = ${Results[2].toFixed(3)}`);
+        GausMethod(matrix);
+        DisplayText("Results:", "gaus");
+        DispalyResults(Results, "gaus");
+        console.log(`x1 = ${Results[0].toFixed(3)}`);
+        console.log(`x2 = ${Results[1].toFixed(3)}`);
+        console.log(`x3 = ${Results[2].toFixed(3)}`);
 
-    console.log();
-    console.log("------------ LU Method -------------");
-    LuMethod(matrix);
+        console.log();
+        console.log("------------ LU Method -------------");
+        LuMethod(matrix);
 
-    console.log();
-    console.log(`x1 = ${Results[0].toFixed(3)}`);
-    console.log(`x2 = ${Results[1].toFixed(3)}`);
-    console.log(`x3 = ${Results[2].toFixed(3)}`);
+        console.log();
+        DisplayText("Results:", "lu");
+        DispalyResults(Results, "lu");
+        console.log(`x1 = ${Results[0].toFixed(3)}`);
+        console.log(`x2 = ${Results[1].toFixed(3)}`);
+        console.log(`x3 = ${Results[2].toFixed(3)}`);
+    } 
 }
 
 /* -------------------- ADDITIONAL FOR OUTPUT AND CHECKING -------------------- */
@@ -163,31 +174,66 @@ function DisplayMatrix(matrix, className) {
     table.style.display = 'block';
     table.style.margin = 'auto';
     table.style.marginBottom = '10px';
-
-    // Додати рядки та комірки до таблиці
-    for (var i = 0; i < matrix.length; i++) {
-        var row = document.createElement('div');
-        row.style.display = 'flex';
-        //row.style.margin = 'auto';
-        for (var j = 0; j < matrix[i].length; j++) {
-            var cell = document.createElement('div');
-            row.style.justifyContent = 'center';
-            cell.innerHTML = `(${(matrix[i][j].toFixed(3))})*x<sub>${j+1}</sub> + `;
-            if (j == 2){
-                cell.innerHTML = `(${(matrix[i][j].toFixed(3))})*x<sub>${j+1}</sub> = `;
+    
+    if(className == "gaus"){
+        // Додати рядки та комірки до таблиці
+        for (var i = 0; i < matrix.length; i++) {
+            var row = document.createElement('div');
+            row.style.display = 'flex';
+            //row.style.margin = 'auto';
+            for (var j = 0; j < matrix[i].length; j++) {
+                var cell = document.createElement('div');
+                row.style.justifyContent = 'center';
+                cell.innerHTML = `(${(matrix[i][j].toFixed(3))})*x<sub>${j+1}</sub> + `;
+                if (j == 2){
+                    cell.innerHTML = `(${(matrix[i][j].toFixed(3))})*x<sub>${j+1}</sub> = `;
+                }
+                if (j == 3){
+                    cell.innerHTML = `${(matrix[i][j].toFixed(3))}`;
+                }
+                cell.style.padding = '5px';
+                cell.style.textAlign = 'center';
+                row.appendChild(cell);
             }
-            if (j == 3){
-                cell.innerHTML = `${(matrix[i][j].toFixed(3))}`;
-            }
-            cell.style.padding = '5px';
-            cell.style.textAlign = 'center';
-            row.appendChild(cell);
+            table.appendChild(row);
         }
-        table.appendChild(row);
     }
 
+    if(className == "lu"){
+        // Додати рядки та комірки до таблиці
+        for (var i = 0; i < matrix.length; i++) {
+            var row = document.createElement('div');
+            row.style.display = 'flex';
+            //row.style.margin = 'auto';
+            for (var j = 0; j < matrix[i].length; j++) {
+                var cell = document.createElement('div');
+                row.style.justifyContent = 'center';
+                cell.innerHTML = `${(matrix[i][j].toFixed(3))}`;
+                cell.style.padding = '5px';
+                cell.style.textAlign = 'center';
+                row.appendChild(cell);
+            }
+            table.appendChild(row);
+        }
+    }
     // Додати таблицю до div
     div.appendChild(table);
+}
+
+function DisplayText(text, className){
+    var div = document.querySelector('.' + className);
+    textField = document.createElement('p');
+    textField.innerHTML = text;
+    div.appendChild(textField);
+}
+
+function DispalyResults(resArray, className){
+    var div = document.querySelector('.' + className);
+    for (var i=0; i<3; i++){
+        var row = document.createElement('div');
+        row.innerHTML = `x<sub>${i+1}</sub> = ${(resArray[i].toFixed(3))} `;
+        div.appendChild(row);
+    }
 }
 
 function СlearContent() {
@@ -342,9 +388,14 @@ function LuMethod(matrixTemp) {
         }
     }
 
+    DisplayText("L:", "lu");
     console.log("L:");
+    DisplayMatrix(L, "lu");
     PrintingMatrix(L, 3, 3);
+
+    DisplayText("U:", "lu");
     console.log("U:");
+    DisplayMatrix(U, "lu");
     PrintingMatrix(U, 3, 3);
 
     let sum = 0, Y = [];

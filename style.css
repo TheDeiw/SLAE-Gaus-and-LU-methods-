@@ -100,8 +100,10 @@ input[type="text"] {
 }
 
 .resultsContainer{
-    margin-top: 10px;
-    width: 100%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
     display: flex;
 }
 
@@ -116,4 +118,13 @@ input[type="text"] {
 .lu{
     width: 50%;
     text-align: center;
+}
+
+.failText{
+    color: #f98484;
+    font-size: 80px;
+}
+
+.fail{
+    display: none;
 }
