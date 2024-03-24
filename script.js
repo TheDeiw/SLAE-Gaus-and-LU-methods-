@@ -134,6 +134,7 @@ function MainFunction(){
         console.log(`x1 = ${Results[0].toFixed(3)}`);
         console.log(`x2 = ${Results[1].toFixed(3)}`);
         console.log(`x3 = ${Results[2].toFixed(3)}`);
+        PrintingMatrix(matrix, 3, 4);
     } 
 }
 
@@ -312,7 +313,14 @@ function ChangeRow(array, i1, i2){
     }
 }
 
-function GausMethod(matrixTemp){
+function GausMethod(matrix){
+    matrixTemp = [[],[],[]];
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            matrixTemp[i][j] = matrix[i][j];
+        }
+    }
+
     let m, koef, position;
     for(let k=0; k<2; k++){
         //Find maximum
@@ -349,7 +357,13 @@ function GausMethod(matrixTemp){
 
 
 /* -------------------- LU METHOD -------------------- */
-function LuMethod(matrixTemp) {
+function LuMethod(matrix) {
+    matrixTemp = [[],[],[]];
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            matrixTemp[i][j] = matrix[i][j];
+        }
+    }
     //Creating L and U
     let L = [], U = [];
     for(let i = 0; i<3; i++){
@@ -365,8 +379,8 @@ function LuMethod(matrixTemp) {
         //Upper
         for(let k = i; k<3; k++){
             let sum = 0;
-            for(let j = 0; j < i; j++){
-                sum += (L[i][j] * U[j][k]);
+            for (let j = 0; j < i; j++) {
+                sum += L[i][j] * U[j][k];
             }
             U[i][k] = matrixTemp[i][k] - sum;
         }
@@ -375,7 +389,7 @@ function LuMethod(matrixTemp) {
         for(let k = i; k < 3; k++)
         {
             if (i == k){
-                L[i][i] = 1; 
+                L[i][i] = 1;
             }
             else
             {
@@ -383,7 +397,8 @@ function LuMethod(matrixTemp) {
                 for(let j = 0; j < i; j++){
                     sum += (L[k][j] * U[j][i]);
                 }
-                L[k][i] = parseInt((matrixTemp[k][i] - sum) / U[i][i]);
+                L[k][i] = ((matrixTemp[k][i] - sum) / U[i][i]);
+                console.log(matrixTemp[k][i]);
             }
         }
     }
@@ -392,7 +407,7 @@ function LuMethod(matrixTemp) {
     console.log("L:");
     DisplayMatrix(L, "lu");
     PrintingMatrix(L, 3, 3);
-
+    
     DisplayText("U:", "lu");
     console.log("U:");
     DisplayMatrix(U, "lu");
