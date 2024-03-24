@@ -63,7 +63,7 @@ var failtxt = document.querySelector('.fail');
 document.querySelector('.submit-button').addEventListener('click', MainFunction);
 
 document.querySelector('.fillzero-button').addEventListener('click', function() {
-    var inputs = document.querySelectorAll('input[type="text"]');
+    var inputs = document.querySelectorAll('input[type="number"]');
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].value = 0;
     }
@@ -75,7 +75,7 @@ document.querySelector('.default-button').addEventListener('click', function() {
         [1.53, -2.32, -1.83, 2.83],
         [0.75, 0.86, 3.72, 1.06]
     ];
-    var inputs = document.querySelectorAll('input[type="text"]');
+    var inputs = document.querySelectorAll('input[type="number"]');
     var k = 0;
     for (var i = 0; i < data.length; i++) {
         for (var j = 0; j < data[i].length; j++) {
@@ -97,7 +97,7 @@ function MainFunction(){
     var matrix = [];
     var equations = document.querySelectorAll('.equation');
     for (var i = 0; i < equations.length; i++) {
-        var inputs = equations[i].querySelectorAll('input[type="text"]');
+        var inputs = equations[i].querySelectorAll('input[type="number"]');
         var row = [];
         for (var j = 0; j < inputs.length; j++) {
             row.push(parseFloat(inputs[j].value));
